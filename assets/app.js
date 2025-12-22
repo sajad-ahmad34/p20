@@ -37,6 +37,54 @@ document.addEventListener('DOMContentLoaded',function(){
       btn.style.display='none';
     });
   });
+
+  // Social share logic
+  const shareData = {
+    title: document.title,
+    url: window.location.href,
+  };
+
+  const btnFacebook = document.querySelector('[data-testid="button-share-facebook"]');
+  if (btnFacebook) {
+    btnFacebook.addEventListener('click', function() {
+      const url = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareData.url);
+      window.open(url, '_blank', 'width=600,height=400');
+    });
+  }
+
+  const btnTwitter = document.querySelector('[data-testid="button-share-twitter"]');
+  if (btnTwitter) {
+    btnTwitter.addEventListener('click', function() {
+      const url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareData.title) + '&url=' + encodeURIComponent(shareData.url);
+      window.open(url, '_blank', 'width=600,height=400');
+    });
+  }
+
+  const btnWhatsapp = document.querySelector('[data-testid="button-share-whatsapp"]');
+  if (btnWhatsapp) {
+    btnWhatsapp.addEventListener('click', function() {
+      const url = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(shareData.title + ' ' + shareData.url);
+      window.open(url, '_blank');
+    });
+  }
+
+  const btnCopy = document.querySelector('[data-testid="button-share-copy"]');
+  if (btnCopy) {
+    btnCopy.addEventListener('click', async function() {
+      try {
+        await navigator.clipboard.writeText(shareData.url);
+        const originalText = btnCopy.innerHTML;
+        // Keep the icon if possible, just update text
+        btnCopy.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check h-4 w-4 mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg>Copied!';
+        setTimeout(function() {
+          btnCopy.innerHTML = originalText;
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy: ', err);
+      }
+    });
+  }
+
   // Mobile menu toggle: create menu if missing
   var toggle = document.querySelector('[data-testid="button-menu-toggle"]');
   if(toggle){
