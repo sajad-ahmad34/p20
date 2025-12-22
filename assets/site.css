@@ -1953,3 +1953,21 @@ body {
 .bg-card ol {
     list-style-type: decimal;
 }
+
+.back-to-home {
+    padding: 6px;
+}
+
+.back-to-browse {
+    padding: 6px;
+}
+
+@media (max-width: 1024px) {
+    span.text-sm.md\:text-base.text-gray-600 {
+        display: none;
+    }
+}
+
+.browse-games-mobile {
+    padding: 5px;
+}
