@@ -1971,3 +1971,34 @@ body {
 .browse-games-mobile {
     padding: 5px;
 }
+
+.breadcrumbs {
+    font-size: 14px;
+    margin: 12px 0;
+}
+
+.breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 6px;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumbs li::after {
+    content: "›";
+    margin-left: 6px;
+}
+
+.breadcrumbs li:last-child::after {
+    content: "";
+}
+
+.breadcrumbs a {
+    color: #4da3ff;
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
